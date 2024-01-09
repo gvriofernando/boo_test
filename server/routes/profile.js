@@ -25,13 +25,13 @@ module.exports = function() {
   const profileRepository = new MongoDBProfileRepository();
   const profileService = new ProfileService(profileRepository);
 
-  router.get('/test', function(req, res, next) {
-    res.render('profile_template', {
-      profile: profiles[0],
-    });
-  });
+  // router.get('/test', function(req, res, next) {
+  //   res.render('profile_template', {
+  //     profile: profiles[0],
+  //   });
+  // });
 
-  router.get('/profiles/:id', async (req, res) => {
+  router.get('/:id', async (req, res) => {
     try {
       const profileId = req.params.id;
       const profile = await profileService.getProfileById(profileId);
@@ -50,7 +50,7 @@ module.exports = function() {
     }
   });
 
-  router.post('/profiles', async (req, res) => {
+  router.post('', async (req, res) => {
     try {
       const newProfile = await profileService.createProfile(req.body);
       res.status(201).json(newProfile);

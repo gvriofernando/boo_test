@@ -1,5 +1,5 @@
 class ProfileRepository {
-    async createProfile(profileData) {
+    async createProfile(profileData, profileId) {
         throw new Error('Method not implemented');
     }
 

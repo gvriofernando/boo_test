@@ -9,7 +9,8 @@ const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 // routes
-app.use('/', require('./routes/profile')());
+app.use('/v1/profiles', require('./routes/profile')());
+app.use('/v1/voting-comment', require('./routes/votingCommentRoutes')());
 
 // start server
 const server = app.listen(port);
