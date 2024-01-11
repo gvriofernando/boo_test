@@ -45,6 +45,17 @@ class VotingCommentService {
       throw error;
     }
   }
+
+  async likeDislikeVotingComment(userId, votingCommentId, action) {
+    try {
+      await this.votingCommentRepository.updateUserVote(userId, votingCommentId, action);
+      const updatedVotingComment = await this.votingCommentRepository.likeDislikeVotingComment(votingCommentId, action);
+      return updatedVotingComment;
+    } catch (error) {
+      console.error('Error liking/disliking VotingComment:', error);
+      throw error;
+    }
+  }
 }
 
 module.exports = VotingCommentService;

@@ -49,6 +49,23 @@ module.exports = function() {
         }
     });
 
+    router.post('/like-dislike/:id', async (req, res) => {
+        try {
+            const userId = req.body.userId;
+            const votingCommentId = req.params.id;
+            const action = req.body.action; // Should be 'like', 'dislike'
+            if (!['like', 'dislike'].includes(action)) {
+                return res.status(400).json({ error: 'Invalid action parameter' });
+            }
+            const updatedVotingComment = await votingCommentService.likeDislikeVotingComment(userId, votingCommentId, action);
+            
+            res.status(200).json(updatedVotingComment);
+        } catch (error) {
+            console.error('Error liking/disliking VotingComment:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
     return router;
 }
 
