@@ -1,6 +1,5 @@
 const Profile = require('../../core/profile/Profile');
 const mongoDBConnector = require('../mongoDBConnector');
-// const { ObjectId } = require('mongodb');
 
 class MongoDBProfileRepository {
     constructor() {
